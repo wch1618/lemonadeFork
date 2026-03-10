@@ -16,16 +16,8 @@
     },
     {
       "name": "windows",
-      "displayName": "Windows (Visual Studio 2022)",
-      "description": "Build with Visual Studio 2022 generator on Windows",
-      "generator": "Visual Studio 17 2022",
-      "architecture": "x64",
-      "binaryDir": "${sourceDir}/build"
-    },
-    {
-      "name": "vs18",
-      "displayName": "Windows (Visual Studio 2026)",
-      "description": "Build with Visual Studio 2026 generator on Windows",
+      "displayName": "Windows (Visual Studio)",
+      "description": "Build with Visual Studio generator on Windows",
       "generator": "Visual Studio 18 2026",
       "architecture": "x64",
       "binaryDir": "${sourceDir}/build"
@@ -60,11 +52,6 @@
     {
       "name": "windows",
       "configurePreset": "windows",
-      "configuration": "Release"
-    },
-    {
-      "name": "vs18",
-      "configurePreset": "vs18",
       "configuration": "Release"
     },
     {

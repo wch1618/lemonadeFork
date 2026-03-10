@@ -71,7 +71,9 @@ const ModelOptionsModal: React.FC<SettingsModalProps> = ({ isOpen, onCancel, onS
         setModelName(model);
         setModelInfo({ ...data });
 
-        const url = `https://huggingface.co/${data.checkpoint.replace(/:.+$/, '')}`;
+        // Use HF_ENDPOINT environment variable if available, otherwise use huggingface.co
+        const hfEndpoint = window.lemonadeConfig?.hfEndpoint || 'https://huggingface.co';
+        const url = `${hfEndpoint}/${data.checkpoint.replace(/:.+$/, '')}`;
         if (url) setModelUrl(url);
 
         const recipe = data.recipe as string;

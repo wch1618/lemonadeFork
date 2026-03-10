@@ -8,6 +8,7 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 
 namespace lemon {
 namespace utils {
@@ -107,6 +108,23 @@ private:
                                            const std::map<std::string, std::string>& headers,
                                            const DownloadOptions& options);
 };
+
+// Returns the HuggingFace endpoint base URL.
+// Respects the HF_ENDPOINT environment variable (e.g. "https://hf-mirror.com").
+// Falls back to "https://huggingface.co" if the variable is not set.
+inline std::string get_hf_endpoint() {
+    const char* endpoint = std::getenv("HF_ENDPOINT");
+    if (endpoint && endpoint[0] != '\0') {
+        std::string url(endpoint);
+        // Strip trailing slash
+        if (!url.empty() && url.back() == '/') {
+            url.pop_back();
+        }
+        return url;
+    }
+    //return "https://huggingface.co";
+    return "https://hf-mirror.com";
+}
 
 // Creates a throttled progress callback that prints at most once per second.
 // The resume_offset is added to show total progress when resuming.
